@@ -29,13 +29,15 @@ export function HeroSection({ data }: Readonly<HeroSectionProps>) {
   console.dir(data, { depth: null });
 const { heading, subheading, image, link } = data;
 
+const imageUrl = "http://localhost:1337" + image.url;
+
   return (
     <header className="relative h-[600px] overflow-hidden">
       <img
         alt="Background"
         className="absolute inset-0 object-cover w-full h-full"
         height={1080}
-        src="https://images.pexels.com/photos/4050314/pexels-photo-4050314.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+        src={imageUrl}
         style={{
           aspectRatio: "1920/1080",
           objectFit: "cover",
