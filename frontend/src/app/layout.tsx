@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { getGlobalData } from "@/data/loaders";
 import { Header } from "@/components/ui/custom/Header";
+import { Footer } from "@/components/ui/custom/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,6 +24,7 @@ export default async function RootLayout({
       <body className={inter.className}>
         <Header data={globaldata.header} />
         <div>{children}</div></body>
+        <Footer data={globaldata.footer} />
     </html>
   );
 }
