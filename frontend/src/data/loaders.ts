@@ -49,7 +49,7 @@ export async function getHomePageData() {
 
 export async function getGlobalData() {
   noStore();
-  
+
   const url = new URL("/api/global", baseUrl);
   url.search = qs.stringify({
     populate: [
@@ -60,4 +60,12 @@ export async function getGlobalData() {
     ]
 })
 return await fetchData(url.href);
+}
+
+export async function getGlobalPageMetadata (){
+  const url = new URL("/api/global", baseUrl);
+  url.search =  qs.stringify({
+    fields: ["title", "description"]
+  })
+  return await fetchData(url.href)
 }
