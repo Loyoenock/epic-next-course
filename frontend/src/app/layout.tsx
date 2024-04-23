@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Toaster } from "@/components/ui/sonner";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { getGlobalData, getGlobalPageMetadata } from "@/data/loaders";
@@ -26,6 +27,7 @@ export default async function RootLayout({
     return (
     <html lang="en">
       <body className={inter.className}>
+        <Toaster position="bottom-center" />
         <Header data={globaldata.header} />
         <div>{children}</div></body>
         <Footer data={globaldata.footer} />
