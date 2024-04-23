@@ -1,5 +1,5 @@
 import { getUserMeLoader } from "@/data/services/get-user-me-loader";
-import { ProfileForm } from "@/components/forms/ProfifleForm";
+import { ProfileForm } from "@/components/forms/ProfileForm";
 // import { ProfileImageForm } from "@/components/forms/ProfileImageForm";
 
 export default async function AccountRoute() {

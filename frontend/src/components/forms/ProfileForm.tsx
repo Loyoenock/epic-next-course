@@ -1,10 +1,19 @@
 "use client";
 import React from "react";
+import { useFormState } from "react-dom";
+import { updateProfileAction } from "@/data/actions/profile-actions";
 import { cn } from "@/lib/utils";
 
 import { SubmitButton } from "@/components/ui/custom/SubmitButton"
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { StrapiErrors } from "@/components/ui/custom/StrapiErrors";
+
+const INITIAL_STATE = {
+    data: null,
+    strapiErrors: null,
+    message: null,
+};            
 
 interface ProfileFormProps {
   id: string;
@@ -34,8 +43,14 @@ export function ProfileForm({
   readonly className?: string;
 }) {
 
+  const updateUserWithId = updateProfileAction.bind(null, data.id  );
+  const [formState, formAction] = useFormState(
+    updateUserWithId,
+    INITIAL_STATE
+  );
+ 
   return (
-    <form
+    <form action={formAction}
       className={cn("space-y-4", className)}>
       <div className="space-y-4 grid ">
         <div className="grid grid-cols-3 gap-4">
@@ -46,6 +61,7 @@ export function ProfileForm({
             defaultValue={data.username || ""}
             disabled
           />
+          <input type="hidden" name="id" value={data.id} />
           <Input
             id="email"
             name="email"
@@ -82,6 +98,7 @@ export function ProfileForm({
       <div className="flex justify-end">
         <SubmitButton text="Update Profile" loadingText="Saving Profile" />
       </div>
+      <StrapiErrors error={formState?.strapiErrors} />
     </form>
   );
 }
